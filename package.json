@@ -1,0 +1,16 @@
+{
+  "name": "turbofish",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test"
+  },
+  "author": "Bruno Paulino",
+  "license": "ISC",
+  "packageManager": "pnpm@6.31.0",
+  "devDependencies": {
+    "turbo": "1.1.2"
+  }
+}
