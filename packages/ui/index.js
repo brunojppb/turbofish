@@ -1,1 +1,1 @@
-export const uiValue = 'Hi there!';
+export const uiValue = 'UI Text 2.0';
