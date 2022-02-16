@@ -7,17 +7,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.1.0
+
+      - name: 🐙 Checkout repo
+        uses: actions/checkout@v2
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2.1.0
         with:
           version: 6.31.0
-      - uses: actions/setup-node@v2
+        
+      - name: ⚛️ Setup NodeJS
+        uses: actions/setup-node@v2
         with:
           node-version: '16.14.0'
           cache: 'pnpm'
       
-      - name: Install dependencies
+      - name: 🎁 Install dependencies
         run: pnpm install
 
-      - name: Execute tests
+      - name: 🛩 Turbo cache
+        id: turbo-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules/.cache/turbo
+          key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
+          # To understand how `restore-keys` work see:
+          # https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#matching-a-cache-key
+          restore-keys: |
+            turbo-${{ github.job }}-${{ github.ref_name }}
+            turbo-${{ github.job }}-{{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: 🧪 Execute tests
         run: pnpm test
