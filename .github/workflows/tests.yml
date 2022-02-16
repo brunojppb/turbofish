@@ -35,7 +35,7 @@ jobs:
           # https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#matching-a-cache-key
           restore-keys: |
             turbo-${{ github.job }}-${{ github.ref_name }}
-            turbo-${{ github.job }}-{{ hashFiles('**/pnpm-lock.yaml') }}
+            turbo-${{ github.job }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: 🧪 Execute tests
         run: pnpm test
