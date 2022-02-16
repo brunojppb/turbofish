@@ -38,4 +38,4 @@ jobs:
             turbo-${{ github.job }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: 🧪 Execute tests
-        run: pnpm test
+        run: pnpm build test
